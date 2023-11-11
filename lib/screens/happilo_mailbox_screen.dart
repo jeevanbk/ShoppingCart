@@ -248,7 +248,12 @@ class HappiloMailboxScreen extends StatelessWidget {
                     TextSpan(
                         text: ' care@happilo.com',
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, color: Colors.blue.shade400,fontSize: 14),)
+                            fontWeight: FontWeight.w500, color: Colors.blue.shade400,fontSize: 14),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          launchDefaultEmailClient('care@happilo.com');
+                        },
+                    )
                   ]),
                 )
               ],
