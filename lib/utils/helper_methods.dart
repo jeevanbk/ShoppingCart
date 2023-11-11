@@ -8,16 +8,19 @@ Future<void> urlLaunch({required String webUrl}) async {
     await launchUrl(url);
   }
 }
-launchDefaultEmailClient(String email) async {
-  final Uri emailLaunchUri = Uri(
-    scheme: 'mailto',
-    path: email,
-  );
-
-  if (await canLaunch(emailLaunchUri.toString())) {
-    await launch(emailLaunchUri.toString());
-  } else {
-    throw 'Could not launch $emailLaunchUri';
+launchDefaultEmailClient(String emailAddress) async {
+  try {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: emailAddress,
+    );
+    if (await canLaunch(emailLaunchUri.toString())) {
+      await launch(emailLaunchUri.toString());
+    } else {
+      throw 'Could not launch $emailAddress';
+    }
+  } catch (e) {
+    print('Error launching email: $e');
   }
 }
 
